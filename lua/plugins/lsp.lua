@@ -103,6 +103,16 @@ return {
 				lspconfig[server].setup(config)
 			end
 
+			-- Disable lsp formatting
+			lspconfig.vtsls.setup({
+				on_attach = function(client)
+					client.server_capabilities.documentFormattingProvider = false
+					client.server_capabilities.documentRangeFormattingProvider = false
+					client.server_capabilities.documentOnTypeFormattingProvider = nil
+				end,
+				root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.jsonc"),
+			})
+
 			-- Setup mason so it can manage 3rd party LSP servers
 			require("mason").setup({})
 
