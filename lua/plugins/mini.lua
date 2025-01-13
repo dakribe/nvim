@@ -25,8 +25,29 @@ local function map_split(buf_id, lhs, direction)
 	vim.keymap.set("n", lhs, rhs, { buffer = buf_id, desc = "Split " .. string.sub(direction, 12) })
 end
 
--- File explorer.
 return {
+	{
+		"echasnovski/mini.pairs",
+		event = "InsertEnter",
+		version = "*",
+		opts = {},
+	},
+	{
+		"echasnovski/mini.icons",
+		version = false,
+		config = function()
+			require("mini.icons").setup({
+				extension = {
+					re = { hl = "MiniIconsRed", glyph = "" },
+					opam = { glyph = "", hl = "MIniIconsOrange" },
+				},
+				file = {
+					[".ocamlformat"] = { glyph = "", hl = "MiniIconsGrey" },
+				},
+			})
+			MiniIcons.mock_nvim_web_devicons()
+		end,
+	},
 	"echasnovski/mini.files",
 	lazy = false,
 	keys = {
