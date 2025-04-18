@@ -26,5 +26,4 @@ return {
 			})
 		end,
 	},
-	{ "bezhermoso/tree-sitter-ghostty", ft = "ghostty" },
 }

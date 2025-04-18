@@ -11,7 +11,8 @@ vim.o.expandtab = true
 vim.o.mouse = "a"
 vim.o.wrap = true
 vim.o.relativenumber = true
-vim.o.cursorline = false
+vim.o.cursorline = true
+vim.o.colorcolumn = "80"
 
 vim.o.splitbelow = true
 vim.o.splitright = true
@@ -30,6 +31,12 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
 vim.opt.updatetime = 50
+-- Renders spaces as ""
+-- vim.opt.list = true
+-- vim.opt.listchars = {
+-- 	space = "·",
+-- 	tab = "···",
+-- }
 
 vim.opt.termguicolors = true
 

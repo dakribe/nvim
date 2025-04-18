@@ -3,6 +3,7 @@ return {
 	event = "BufWritePre",
 	opts = {
 		formatters_by_ft = {
+			astro = { "prettier" },
 			lua = { "stylua" },
 			html = { "prettierd" },
 			css = { "prettierd" },
@@ -14,6 +15,7 @@ return {
 			yaml = { "prettierd" },
 			markdown = { "prettierd" },
 			mdx = { "prettierd" },
+			rust = { "rustfmt" },
 			tf = { "terraform_fmt" },
 			sql = { "sql_formatter" },
 			go = { "gofumpt", "goimports" },
@@ -29,7 +31,7 @@ return {
 		formatters = {
 			refmt = {
 				command = "dune",
-				args = { "build", "@fmt", "--auto-promote" },
+				args = { "@fmt", "--auto-promote" },
 				stdin = false,
 				exit_codes = { 0, 1 },
 			},
