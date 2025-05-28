@@ -19,7 +19,7 @@ local function on_attach(client, bufnr)
 		vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
 	end
 
-	keymap('gra', '<cmd>FzfLua lsp_code_actions<cr>', 'vim.lsp.buf.code_action()', { 'n', 'x' })
+	keymap('<leader>ca', '<cmd>FzfLua lsp_code_actions<cr>', 'vim.lsp.buf.code_action()', { 'n', 'x' })
 
 	keymap('grr', '<cmd>FzfLua lsp_references<cr>', 'vim.lsp.buf.references()')
 
@@ -116,12 +116,6 @@ local function on_attach(client, bufnr)
 	end
 end
 
--- Define the diagnostic signs.
-for severity, icon in pairs(diagnostic_icons) do
-	local hl = 'DiagnosticSign' .. severity:sub(1, 1) .. severity:sub(2):lower()
-	vim.fn.sign_define(hl, { text = icon, texthl = hl })
-end
-
 -- Diagnostic configuration.
 vim.diagnostic.config({
 	virtual_text = {
@@ -154,7 +148,14 @@ vim.diagnostic.config({
 			return prefix, 'Diagnostic' .. level:gsub('^%l', string.upper)
 		end,
 	},
-	signs = true,
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = diagnostic_icons.ERROR,
+			[vim.diagnostic.severity.WARN] = diagnostic_icons.WARN,
+			[vim.diagnostic.severity.HINT] = diagnostic_icons.HINT,
+			[vim.diagnostic.severity.INFO] = diagnostic_icons.INFO,
+		},
+	},
 	underline = true,
 })
 
